@@ -1,5 +1,6 @@
-import { Controller, Post, Body, Get, Param, Patch, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Patch, Delete, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ProductsService } from './products.service';
+import { CapitalizePipe } from './products.capitalize.pipe';
 
 @Controller('products')
 export class ProductsController {
@@ -12,14 +13,15 @@ export class ProductsController {
 
     // expecting a 'title' object from the incoming post body... will extract it and put it into prodTitle
     @Post()
+    @UsePipes(new ValidationPipe(), new CapitalizePipe)
     addProduct(
         @Body('title') prodTitle: string, 
         @Body('description') prodDesc: string, 
         @Body('price') prodPrice: number
     ): any {
         const generatedId = this.productsService.insertProduct(
-            prodTitle, 
-            prodDesc, 
+            prodTitle,
+            prodDesc,
             prodPrice
         );
         return { id: generatedId };
