@@ -6,8 +6,6 @@ import { Injectable, PipeTransform, ArgumentMetadata } from "@nestjs/common";
 @Injectable()
 export class CapitalizePipe implements PipeTransform {
     transform(value: any, metadata: ArgumentMetadata) {
-        console.log(metadata.data);
-        console.log(value);
         if(metadata.data === 'title') {
             return this.capitalizeWords(value);
         }
