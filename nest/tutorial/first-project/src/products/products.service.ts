@@ -4,13 +4,7 @@ import { Product } from './products.model';
 @Injectable()
 export class ProductsService {
     private products: Product[] = [];
-
-    insertProduct(title: string, desc: string, price: number) {
-        const prodId = Math.random().toString();
-        const newProduct = new Product(prodId, title, desc, price);
-        this.products.push(newProduct);
-        return prodId;
-    }
+    private currId: number = 0;
 
     getAllProducts() {
         /*  this.products is a pointer to the private variable products
@@ -18,6 +12,15 @@ export class ProductsService {
             this is one of the ways to accomplish this:
         */
         return [...this.products];
+    }
+
+    insertProduct(title: string, desc: string, price: number) {
+        //const prodId = Math.random().toString();
+        this.currId++;
+        const prodId = this.currId.toString();
+        const newProduct = new Product(prodId, title, desc, price);
+        this.products.push(newProduct);
+        return prodId;
     }
 
     getSingleProduct(productId: string) {

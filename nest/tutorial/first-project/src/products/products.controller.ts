@@ -5,6 +5,11 @@ import { ProductsService } from './products.service';
 export class ProductsController {
     constructor(private readonly productsService: ProductsService) {}
 
+    @Get()
+    getAllProducts() {
+        return this.productsService.getAllProducts();
+    }
+
     // expecting a 'title' object from the incoming post body... will extract it and put it into prodTitle
     @Post()
     addProduct(
@@ -18,11 +23,6 @@ export class ProductsController {
             prodPrice
         );
         return { id: generatedId };
-    }
-
-    @Get()
-    getAllProducts() {
-        return this.productsService.getAllProducts();
     }
 
     @Get(':id')
