@@ -3,7 +3,6 @@ import { ProductsService } from './products.service';
 import { CapitalizePipe } from './products.capitalize.pipe';
 import { HttpExceptionFilter } from '../exceptions/http-exception.filter';
 import { TestException } from '../exceptions/test.exception';
-import { Price } from './decorators/price.decorator';
 
 // filter is controller-scoped... can also be method-scoped or globally-scoped
 @Controller('products')
