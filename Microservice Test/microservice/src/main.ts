@@ -7,10 +7,9 @@ import { Logger } from '@nestjs/common';
 const logger = new Logger('Main');
 
 const microserviceOptions = {
-  transport: Transport.TCP,
+  transport: Transport.REDIS,
   options: {
-    host: '127.0.0.1',
-    port: 8877,
+    url: 'redis://localhost:6379'
   }
 }
 
